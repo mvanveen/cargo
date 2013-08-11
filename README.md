@@ -28,7 +28,7 @@ Alternatively, you can get the same result with `cargo.ps`:
 [<Container [9a7a6a52171d]>, <Container [b575c9ece1b9]>, <Container [b225c9398c4b]>]
 ```
 
-**get dock metadat**
+**get dock metadata**
 
 ```python
 >>> d 
