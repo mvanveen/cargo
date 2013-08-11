@@ -13,5 +13,4 @@ def start(container=None, *args, **kw):
 
 
 def ps(dock=get_default_dock()):
-  return dock
-
+  return dock.containers
