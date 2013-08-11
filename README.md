@@ -33,8 +33,8 @@ u'python -m SimpleHTTPServer'
 
 **inspect container ports**
 
-In this example, we've opened up port `8000` in our container, and it is being 
-exposed on port `49155`.
+In this example, we've opened up port `8000` in our container, and its being 
+exposed on the local port `49155`.
 
 ```python
 >>> container = d.containers[0]
