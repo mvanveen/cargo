@@ -15,3 +15,11 @@ def test_get_attribute():
   assert inspect.getsource(dock.build) == inspect.getsource(client.build)
 
 
+def test_repr():
+  dock = Dock()
+  assert dock.__repr__() == '<Dock [http://localhost:4243] (1.3)>'
+ 
+
+def test_containers():
+  #probably need pymox here
+  dock = Dock()

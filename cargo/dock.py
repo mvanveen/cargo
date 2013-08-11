@@ -1,5 +1,7 @@
 import docker
 
+from cargo.container import Container
+
 LOCAL_URL = 'http://localhost:4243'
 DEFAULT_VERSION = "1.3"
 
@@ -30,8 +32,9 @@ class Dock(object):
 
     return super(Dock, self).__getattribute__(x)
 
-
   @property
   def containers(self, *args, **kw):
-    return self._client.containers(*args, **kw)
+    return [Container(x) for x in self._client.containers(*args, **kw)]
 
+  def __repr__(self):
+    return '<Dock [%s] (%s)>' % (self._base_url, self._version)

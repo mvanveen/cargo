@@ -41,3 +41,14 @@ class Container(object):
   @property
   def command(self):
      return self._config.get('command')
+
+  @property
+  def container_id(self):
+    return self._config.get('id')
+
+  @property
+  def image(self):
+    return self._config.get('image')
+  
+  def __repr__(self):
+    return '<Container [%s]>' % (self.container_id[:12],)

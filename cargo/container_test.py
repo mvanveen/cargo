@@ -54,5 +54,9 @@ class TestContainer(unittest.TestCase):
   def test_container_ports_inner_forward_port_interior(self):
     assert self.ex_container.ports[0][1] == 8000
 
+  def test_container_repr(self):
+    assert self.ex_container.__repr__() == '<Container [b575c9ece1b9]>'
+
+
   #TODO(mvv): make a test payload that has more than one port forwarded
 
