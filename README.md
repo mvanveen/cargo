@@ -18,6 +18,8 @@ request so we can all collectively create something beautiful!*
 >>> d = Dock()
 >>> d 
 <Dock [http://localhost:4243] (1.3)>
+>>> d.info
+{u'NFd': 28, u'MemoryLimit': True, u'NGoroutines': 36, u'Images': 112, u'Debug': False, u'Containers': 189}
 >>> d.containers
 [<Container [9a7a6a52171d]>, <Container [b575c9ece1b9]>, <Container [b225c9398c4b]>]
 ```
