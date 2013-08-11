@@ -6,7 +6,7 @@ cargo
 
 ## Examples
 
-**inspect currently running containers locally**
+**inspect currently running local containers**
 
 ```python
 >>> from cargo import Dock
