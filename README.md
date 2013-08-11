@@ -16,22 +16,27 @@ request so we can all collectively create something beautiful!*
 ```python
 >>> from cargo import Dock
 >>> d = Dock()
->>> d 
-<Dock [http://localhost:4243] (1.3)>
->>> d.info
-{u'NFd': 28, u'MemoryLimit': True, u'NGoroutines': 36, u'Images': 112, u'Debug': False, u'Containers': 189}
->>> d.memory_limit
-True
 >>> d.containers
 [<Container [9a7a6a52171d]>, <Container [b575c9ece1b9]>, <Container [b225c9398c4b]>]
-```
 
+```
 Alternatively, you can get the same result with `cargo.ps`:
 
 ```python
 >>> import cargo
 >>> cargo.ps()
 [<Container [9a7a6a52171d]>, <Container [b575c9ece1b9]>, <Container [b225c9398c4b]>]
+```
+
+**get dock metadat**
+
+```python
+>>> d 
+<Dock [http://localhost:4243] (1.3)>
+>>> d.info
+{u'NFd': 28, u'MemoryLimit': True, u'NGoroutines': 36, u'Images': 112, u'Debug': False, u'Containers': 189}
+>>> d.memory_limit
+True
 ```
 
 **inspect command string running in container**
