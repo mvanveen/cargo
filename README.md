@@ -30,3 +30,14 @@ Alternatively, you can get the same result with `cargo.ps`:
 >>> container.command
 u'python -m SimpleHTTPServer'
 ```
+
+**inspect container ports**
+
+In this example, we've opened up port `8000` in our container, and it is being 
+exposed on port `49155`.
+
+```python
+>>> container = d.containers[0]
+>>> container.ports
+[(49155, 8000)]
+```
