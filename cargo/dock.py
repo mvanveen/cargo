@@ -16,7 +16,11 @@ class Dock(object):
 
 
   def __getattribute__(self, x):
-    client = Super(Dock, self).__getattribute__('_client')
-    if hasattr(client, x) and not hasattr(self, x):
-      return client.x
+    client = super(Dock, self).__getattribute__('_client')
+
+    # return client attribute if not a magic method
+    if hasattr(client, x) and not x.startswith('_'):
+      return client.__getattribute__(x)
+
     return super(Dock, self).__getattribute__(x)
+
