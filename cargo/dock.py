@@ -6,7 +6,7 @@ LOCAL_URL = 'http://localhost:4243'
 DEFAULT_VERSION = "1.3"
 
 # this is a hack to get `__getattribute__` working for a few reserved properties
-RESERVED_METHODS = ['containers']
+RESERVED_METHODS = ['containers', '_client']
 
 class Dock(object):
   """Wrapper class for `docker-py` Client instances"""
@@ -38,3 +38,5 @@ class Dock(object):
 
   def __repr__(self):
     return '<Dock [%s] (%s)>' % (self._base_url, self._version)
+
+DEFAULT_DOCK = Dock()

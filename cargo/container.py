@@ -1,5 +1,7 @@
 import datetime
 
+import cargo
+
 class Container(object):
   """Python wrapper class encapsulating the metadata for a Docker Container"""
 
@@ -52,3 +54,10 @@ class Container(object):
   
   def __repr__(self):
     return '<Container [%s]>' % (self.container_id[:12],)
+
+  @property
+  def logs(self, dock=None):
+    #TODO(mvv): unit test this!!!
+    if not dock:
+      dock = cargo.get_default_dock()
+    return dock._client.logs(self.container_id) 

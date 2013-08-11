@@ -1,8 +1,10 @@
-from cargo.dock import dock
+from cargo.dock import Dock
 
-default_dock = Dock()
+def get_default_dock(dock=Dock()):
+  return dock
 
-def build(path=None, dock=default_dock, *args, **kw):
+
+def build(path=None, dock=get_default_dock(), *args, **kw):
   raise NotImplementedError  
 
 
@@ -10,5 +12,6 @@ def start(container=None, *args, **kw):
   raise NotImplementedError  
 
 
-def ps(dock=default_dock):
-  return dock.containers
+def ps(dock=get_default_dock()):
+  return dock
+
