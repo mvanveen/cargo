@@ -35,7 +35,8 @@ class Container(object):
 
   @property
   def ports(self):
-     return self._config.get('ports')
+     split = lambda payload: [tuple([int(port) for port in x.split('->')]) for x in payload.split(', ')]
+     return split(self._config.get('ports'))
 
   @property
   def command(self):

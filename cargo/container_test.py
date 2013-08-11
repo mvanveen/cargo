@@ -39,6 +39,20 @@ class TestContainer(unittest.TestCase):
   def test_container_command(self):
     assert self.ex_container.command == 'python -m SimpleHTTPServer'
 
-  #def test_container_ports(self):
-  #  assert self.ex_container.ports == (49154, 8000)
+  def test_container_ports_list(self):
+    assert isinstance(self.ex_container.ports, list)
+
+  def test_container_ports_list_length(self):
+    assert len(self.ex_container.ports) == 1
+
+  def test_container_ports_inner_tuple(self):
+    assert isinstance(self.ex_container.ports[0], tuple)
+
+  def test_container_ports_inner_forward_port_exterior(self):
+    assert self.ex_container.ports[0][0] == 49155
+
+  def test_container_ports_inner_forward_port_interior(self):
+    assert self.ex_container.ports[0][1] == 8000
+
+  #TODO(mvv): make a test payload that has more than one port forwarded
 
