@@ -1,10 +1,10 @@
+import unittest
+
 import docker
 
 from cargo.dock import Dock
 
 
-def test_make_dock():
-  dock = Dock()
 
 def test_get_attribute():
   import inspect
@@ -14,12 +14,38 @@ def test_get_attribute():
   # source code equivalence ftw (refs will be different)
   assert inspect.getsource(dock.build) == inspect.getsource(client.build)
 
+class DockTest(unittest.TestCase):
+  """Test class for `Dock` objects.
 
-def test_repr():
-  dock = Dock()
-  assert dock.__repr__() == '<Dock [http://localhost:4243] (1.3)>'
- 
+  Not to be confused with `doctest`, of course ;-)
+  """
 
-def test_containers():
-  #probably need pymox here
-  dock = Dock()
+  def setUp(self, *args, **kw):
+    super(DockTest, self).setUp(*args, **kw)
+
+    self._dock = Dock()
+  
+  def test_containers(self):
+    #TODO(mvv): robably need pymox here
+    assert self._dock
+
+  def test_repr(self):
+    assert self._dock.__repr__() == '<Dock [http://localhost:4243] (1.3)>'
+
+  def test_dock_info(self):
+    assert isinstance(self._dock.info, dict)
+
+  def test_total_num_containers(self):
+    assert isinstance(self._dock.total_num_containers, int)
+
+  def test_total_num_images(self):
+    assert isinstance(self._dock.total_num_images, int)
+
+  def test_total_num_goroutines(self):
+    assert isinstance(self._dock.total_num_goroutines, int)
+
+  def test_memory_limit(self):
+    assert isinstance(self._dock.memory_limit, bool)
+
+  def test_debug(self):
+    assert isinstance(self._dock.debug, bool)
