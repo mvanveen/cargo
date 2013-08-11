@@ -4,6 +4,8 @@ cargo
 
 ![](supply_crate.jpg)
 
+## Examples
+
 **inspect currently running containers locally**
 
 ```python
@@ -41,3 +43,7 @@ exposed on the local port `49155`.
 >>> container.ports
 [(49155, 8000)]
 ```
+
+## License
+
+cargo is MIT licensed.
