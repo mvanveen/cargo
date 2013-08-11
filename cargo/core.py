@@ -15,3 +15,7 @@ def build(path=None, dock=default_dock, *args, **kw):
 
 def start(container=None, *args, **kw):
   return docker.start
+
+
+def ps(dock=default_dock):
+  return dock.containers
