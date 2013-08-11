@@ -83,6 +83,10 @@ u''
 u'172.16.42.1 - - [11/Aug/2013 12:49:56] "GET / HTTP/1.1" 200 -\n'
 ```
 
+## Demo
+
+[Link to ascii.io demo](http://ascii.io/a/4687
+
 ## License
 
 cargo is MIT licensed.
