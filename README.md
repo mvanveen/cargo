@@ -60,9 +60,11 @@ logs, which now contain an apache logs entry for our `GET` request, :sparkles:
 ```python
 >>> import cargo
 >>> import requests
+>>> container = cargo.ps()[0]
+>>> container
+<Container [9a7a6a52171d]>
 >>> container.command
 u'python -m SimpleHTTPServer'
->>> container = cargo.ps()[0]
 >>> container.logs
 u''
 >>> requests.get('http://localhost:%s' % (container.ports[0][0]))
