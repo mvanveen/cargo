@@ -25,7 +25,7 @@ Alternatively, you can get the same result with `cargo.ps`:
 [<Container [9a7a6a52171d]>, <Container [b575c9ece1b9]>, <Container [b225c9398c4b]>]
 ```
 
-**inspect container command**
+**inspect command string running in container**
 
 ```python
 >>> container = d.containers[0]
@@ -33,10 +33,10 @@ Alternatively, you can get the same result with `cargo.ps`:
 u'python -m SimpleHTTPServer'
 ```
 
-**inspect container ports**
+**inspect forwarded container ports**
 
-In this example, we've opened up port `8000` in our container, and its being 
-exposed on the local port `49155`.
+In this example, we're forwarding port `49155` locally to port 
+`8000` within the container.
 
 ```python
 >>> container = d.containers[0]
