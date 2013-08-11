@@ -5,9 +5,9 @@ cargo
 ![](supply_crate.jpg)
 
 **:warning: WARNING** *This is a very early alpha release of cargo.  All development 
-for this project is being done in the open.  Contributions are totally welcome, but 
-please at least announce and discuss your plans via an issue before submitting a pull 
-request so we can all collectively create something beautiful!*
+for this project is being done in the open.  Contributions and critiques are totally
+welcome, but please at least announce and discuss your plans via an issue before 
+submitting a pull request so we can all collectively create something beautiful!*
 
 ## Examples
 
