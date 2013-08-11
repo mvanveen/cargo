@@ -13,9 +13,10 @@ request so we can all collectively create something beautiful!*
 
 **inspect container logs**
 
-Here we are running `python -m SimpleHTTPServer` to fire up a basic HTTP server on port `8000`.
-We use `container.ports` to grab out the forwarded port, issue an HTTP `GET`, and then inspect
-the subsequent container logs, which now contain an apache logs entry for our `GET` request.
+In this exzmple we are running `python -m SimpleHTTPServer` to fire up a basic HTTP 
+server on port `8000`.  We use `container.ports` to grab out the forwarded port, 
+issue an HTTP `GET`, and then inspect the subsequent container logs, which now contain 
+an apache logs entry for our `GET` request, :sparkles: as if by magic! :sparkles:
 
 ```python
 >>> import cargo
@@ -30,9 +31,6 @@ u''
 >>> container.logs
 u'172.16.42.1 - - [11/Aug/2013 12:49:56] "GET / HTTP/1.1" 200 -\n'
 ```
-
-:sparkles: It's just like magic! :sparkles:
-
 
 **inspect currently running local containers**
 
