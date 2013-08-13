@@ -26,7 +26,6 @@ class Dock(object):
   def __getattribute__(self, x):
     client = super(Dock, self).__getattribute__('_client')
 
-
     # return client attribute if not a magic method or reserved attr
     legal = not x.startswith('_') and not(x in RESERVED_METHODS)
 
