@@ -1,5 +1,3 @@
-import datetime
-
 from cargo.base import CargoBase, lowercase, make_id_dict
 
 class Container(CargoBase):
@@ -25,12 +23,14 @@ class Container(CargoBase):
     return self.config.get('status')
 
   @property
-  def created(self):
-    return datetime.datetime.fromtimestamp(int(self.config.get('created')))
-
-  @property
   def image(self):
-     return self.config.get('image')
+    images = self._dock.images
+    
+    image = dict(
+      [(x.image_id, x) for x in images] + 
+      [(x.image_id[:12], x) for x in images]
+    ).get(self.config.get('image'))
+    return image
 
   @property
   def ports(self):
@@ -53,10 +53,6 @@ class Container(CargoBase):
   @property
   def container_id(self):
     return self.config.get('id')
-
-  @property
-  def image(self):
-    return self.config.get('image')
  
   @property
   def logs(self):

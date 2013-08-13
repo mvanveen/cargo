@@ -1,12 +1,13 @@
 import docker
 
 from cargo.container import Container
+from cargo.image import Image
 
 LOCAL_URL = 'http://localhost:4243'
 DEFAULT_VERSION = "1.3"
 
 # this is a hack to get `__getattribute__` working for a few reserved properties
-RESERVED_METHODS = ['containers', '_client', 'info', 'start', 'stop']
+RESERVED_METHODS = ['containers', '_client', 'images', 'info', 'start', 'stop']
 
 class Dock(object):
   """Wrapper class for `docker-py` Client instances"""
@@ -41,6 +42,14 @@ class Dock(object):
   @property
   def _containers(self, *args, **kw):
     return [x for x in self._client.containers(*args, **kw)]
+
+  @property
+  def images(self, *args, **kw):
+    return [Image(x) for x in self._client.images(*args, **kw)]
+
+  @property
+  def _images(self, *args, **kw):
+    return [x for x in self._client.images(*args, **kw)]
 
   @property
   def info(self):

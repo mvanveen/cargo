@@ -1,4 +1,5 @@
-#from cargo.core import get_default_dock
+import datetime
+
 import cargo
 
 def make_id_dict(_list):
@@ -37,3 +38,7 @@ class CargoBase(object):
   @property
   def config(self):
      raise NotImplementedError
+
+  @property
+  def created(self):
+    return datetime.datetime.fromtimestamp(int(self.config.get('created')))
