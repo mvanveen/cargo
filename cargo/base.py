@@ -32,5 +32,5 @@ class CargoBase(object):
     self._config = config = lowercase(config)
 
   @property
-  def config():
+  def config(self):
      raise NotImplementedError
