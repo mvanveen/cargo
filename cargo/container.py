@@ -61,3 +61,10 @@ class Container(object):
     if not dock:
       dock = cargo.get_default_dock()
     return dock._client.logs(self.container_id) 
+
+  @property
+  def top(self, dock=None):
+    #TODO(mvv): unit test this!!!
+    if not dock:
+      dock = cargo.get_default_dock()
+    return dock._client.top(self.container_id) 
