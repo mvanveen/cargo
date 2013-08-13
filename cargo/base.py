@@ -1,6 +1,9 @@
 #from cargo.core import get_default_dock
 import cargo
 
+def make_id_dict(_list):
+  return dict([(x.get('Id'), x) for x in _list])
+
 def lowercase(config):
   return dict([(x.lower(), y) for x, y in config.iteritems()])
 

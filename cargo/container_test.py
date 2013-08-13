@@ -49,8 +49,9 @@ class TestContainer(unittest.TestCase):
     assert isinstance(self.ex_container.ports[0], tuple)
 
   # TODO: write mocks for this shit.
-  #def test_container_ports_inner_forward_port_exterior(self):
-  #  assert self.ex_container.ports[0][0] == 49155
+  def test_container_ports_inner_forward_port_exterior(self):
+    port = self.ex_container.ports[0][0]
+    assert isinstance(port, (int)) or port is None
 
   def test_container_ports_inner_forward_port_interior(self):
     assert self.ex_container.ports[0][1] == 8000

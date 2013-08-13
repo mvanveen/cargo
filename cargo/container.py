@@ -1,9 +1,6 @@
 import datetime
 
-from cargo.base import CargoBase
-
-def lowercase(config):
-  return dict([(x.lower(), y) for x, y in config.iteritems()])
+from cargo.base import CargoBase, lowercase, make_id_dict
 
 class Container(CargoBase):
   """Python wrapper class encapsulating the metadata for a Docker Container"""
@@ -18,9 +15,7 @@ class Container(CargoBase):
   def config(self):
     # make a dictionary {container_id: <container> \forall containers in 
     # `self._dock.containers` and try to key into the current container id
-    container = dict([                                   
-     (x.get('Id'), x) for x in self._dock._containers] 
-    ).get(self._config.get('id'))                            
+    container = make_id_dict(self._dock._containers).get(self._config.get('id'))
     if container:
       self._config = lowercase(container)
     return self._config
@@ -85,3 +80,4 @@ class Container(CargoBase):
   def stop(self, *args, **kw):
     #TODO(mvv): unit test this!!!
     self._dock.stop(self.container_id, *args, **kw)
+
