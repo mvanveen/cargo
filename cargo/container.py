@@ -44,7 +44,7 @@ class Container(CargoBase):
        # no host ports are exposed if container isn't running
        # TODO: unit test this case
        payload = self._config.get('ports')
-       return payload and [(None, y) for _, y in split(payload)] or None
+       return payload and [(None, y) for _, y in split(payload)] or []
 
   @property
   def command(self):
