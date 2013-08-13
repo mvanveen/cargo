@@ -4,10 +4,11 @@ cargo
 
 ![](supply_crate.jpg)
 
-**:warning: WARNING** *This is a very early alpha release of cargo.  All development 
-for this project is being done in the open.  Contributions and critiques are totally
-welcome, but please at least announce and discuss your plans via an issue before 
-submitting a pull request so we can all collectively create something beautiful!*
+**:warning: WARNING** *This is a very early alpha release of cargo.* ***APIs are subject to change.***
+*All development for this project is being done in the open.  Contributions 
+and critiques are totally welcome, but please at least announce and discuss your 
+plans via an issue before submitting a pull request so we can all collectively create 
+something beautiful!*
 
 ## Examples
 
@@ -81,6 +82,10 @@ u''
 >>> container.logs
 u'172.16.42.1 - - [11/Aug/2013 12:49:56] "GET / HTTP/1.1" 200 -\n'
 ```
+
+## Demo
+
+[Link to ascii.io demo](http://ascii.io/a/4687)
 
 ## License
 
