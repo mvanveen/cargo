@@ -6,7 +6,7 @@ LOCAL_URL = 'http://localhost:4243'
 DEFAULT_VERSION = "1.3"
 
 # this is a hack to get `__getattribute__` working for a few reserved properties
-RESERVED_METHODS = ['containers', '_client', 'info']
+RESERVED_METHODS = ['containers', '_client', 'info', 'start', 'stop']
 
 class Dock(object):
   """Wrapper class for `docker-py` Client instances"""
@@ -18,6 +18,9 @@ class Dock(object):
     self._version = kw['version'] = kw.get('version') or DEFAULT_VERSION
     
     self._client = docker.Client(*args, **kw)
+
+  def __repr__(self):
+    return '<Dock [%s] (%s)>' % (self._base_url, self._version)
 
   def __getattribute__(self, x):
     client = super(Dock, self).__getattribute__('_client')
@@ -34,6 +37,10 @@ class Dock(object):
   @property
   def containers(self, *args, **kw):
     return [Container(x) for x in self._client.containers(*args, **kw)]
+
+  @property
+  def _containers(self, *args, **kw):
+    return [x for x in self._client.containers(*args, **kw)]
 
   @property
   def info(self):
@@ -64,5 +71,32 @@ class Dock(object):
     info = self.info
     return info.get('Debug')
 
-  def __repr__(self):
-    return '<Dock [%s] (%s)>' % (self._base_url, self._version)
+  def running(self, container):
+    """Returns True if dock is running container, else False
+
+    Accepts container id's and Container objects
+    """
+    container_ids = [x.container_id for x in self.containers]
+    if isinstance(container, Container):
+      return container.container_id in containder_ids
+    elif isinstance(container, basestring):
+      return container in container_ids
+
+    raise TypeError('expected container id as string or Container object.')
+
+
+  def start(self, container, *args, **kw):
+    if isinstance(container, Container):
+      cid = container.container_id
+    elif isinstance(container, basestring):
+      cid = container
+    
+    return self._client.start(cid, *args, **kw)
+
+  def stop(self, container, *args, **kw):
+    if isinstance(container, Container):
+      cid = container.container_id
+    elif isinstance(container, basestring):
+      cid = container
+    
+    return self._client.stop(cid, *args, **kw)
