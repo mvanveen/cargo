@@ -1,3 +1,4 @@
+from cargo.container import Container
 from cargo.dock import Dock
 
 def get_default_dock(dock=Dock()):
@@ -12,5 +13,5 @@ def start(container=None, *args, **kw):
   raise NotImplementedError  
 
 
-def ps(dock=get_default_dock()):
-  return dock.containers
+def ps(dock=get_default_dock(), *args, **kw):
+  return [Container(x) for x in dock._client.containers(*args, **kw)]

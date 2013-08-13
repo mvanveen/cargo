@@ -9,3 +9,7 @@ def test_ps():
   assert [x.container_id == y.container_id for x, y in 
      zip(cargo.ps(), dock.containers)
   ] or not (len(cargo.ps()) and len(dock.containers))
+
+def test_ps_all():
+  # passing in all=True both works and returns Container objects
+  assert all([isinstance(x, cargo.Container) for x in cargo.ps(all=True)])
