@@ -1,4 +1,5 @@
 from cargo.base import CargoBase, lowercase, make_id_dict
+from cargo.image import Image
 
 class Container(CargoBase):
   """Python wrapper class encapsulating the metadata for a Docker Container"""
@@ -24,13 +25,15 @@ class Container(CargoBase):
 
   @property
   def image(self):
-    images = self._dock.images
+    images = self._dock._client.images(all=True)
     
     image = dict(
-      [(x.image_id, x) for x in images] + 
-      [(x.image_id[:12], x) for x in images]
+      [(x.get('Id'), x) for x in images] + 
+      [(x.get('Id')[:12], x) for x in images]
     ).get(self.config.get('image'))
-    return image
+    if image:
+      return Image(image)
+    return self.config.get('image')
 
   @property
   def ports(self):
@@ -77,3 +80,5 @@ class Container(CargoBase):
     #TODO(mvv): unit test this!!!
     self._dock.stop(self.container_id, *args, **kw)
 
+  def rm(self, *args, **kw):
+     return self._dock.rm(*args, **kw)

@@ -79,6 +79,15 @@ class Dock(object):
     info = self.info
     return info.get('Debug')
 
+  def rm(self, container, *args, **kw):
+    if isinstance(container, Container):
+       return self._client.remove_container(container.container_id, *args, **kw)
+
+    elif isinstance(container, basestring):
+       return self._client.remove_container(container, *args, **kw)
+
+    raise TypeError('expected container id as string or Container object.')
+
   def running(self, container):
     """Returns True if dock is running container, else False
 

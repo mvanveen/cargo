@@ -9,10 +9,6 @@ def build(path=None, dock=get_default_dock(), *args, **kw):
   raise NotImplementedError  
 
 
-def start(container, *args, **kw):
-  raise NotImplementedError  
-
-
 def ps(dock=get_default_dock(), *args, **kw):
   _id = kw.get('id')
   if _id:
@@ -27,3 +23,11 @@ def ps(dock=get_default_dock(), *args, **kw):
      [(x.container_id, x) for x in containers]
     ).get(_id)
   return containers
+
+
+def rm(container, dock=get_default_dock(), *args, **kw):
+  return dock.rm(container, *args, **kw)
+
+
+def start(container, *args, **kw):
+  raise NotImplementedError  
