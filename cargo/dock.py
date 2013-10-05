@@ -3,8 +3,8 @@ import docker
 from cargo.container import Container
 from cargo.image import Image
 
-LOCAL_URL = 'http://localhost:4243'
-DEFAULT_VERSION = "1.3"
+LOCAL_URL = 'unix://var/run/docker.sock'
+DEFAULT_VERSION = "1.4"
 
 # this is a hack to get `__getattribute__` working for a few reserved properties
 RESERVED_METHODS = ['containers', '_client', 'images', 'info', 'start', 'stop']
