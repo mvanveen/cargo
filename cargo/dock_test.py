@@ -1,3 +1,4 @@
+import re
 import unittest
 
 import docker
@@ -30,7 +31,10 @@ class DockTest(unittest.TestCase):
     assert self._dock
 
   def test_repr(self):
-    assert self._dock.__repr__() == '<Dock [http://localhost:4243] (1.3)>'
+    assert re.match(
+      '<Dock \[(.*)\] \((.*)\)>',
+      self._dock.__repr__()
+    )
 
   def test_dock_info(self):
     assert isinstance(self._dock.info, dict)
@@ -45,7 +49,7 @@ class DockTest(unittest.TestCase):
     assert isinstance(self._dock.total_num_goroutines, int)
 
   def test_memory_limit(self):
-    assert isinstance(self._dock.memory_limit, bool)
+    assert isinstance(self._dock.memory_limit, int)
 
   def test_debug(self):
-    assert isinstance(self._dock.debug, bool)
+    assert isinstance(self._dock.debug, int)

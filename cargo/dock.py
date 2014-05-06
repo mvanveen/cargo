@@ -3,9 +3,6 @@ import docker
 from cargo.container import Container
 from cargo.image import Image
 
-LOCAL_URL = 'unix://var/run/docker.sock'
-DEFAULT_VERSION = "1.4"
-
 # this is a hack to get `__getattribute__` working for a few reserved properties
 RESERVED_METHODS = ['containers', '_client', 'images', 'info', 'start', 'stop']
 
@@ -15,13 +12,10 @@ class Dock(object):
   def __init__(self, *args, **kw):
     super(Dock, self).__init__()
 
-    self._base_url = kw['base_url'] = kw.get('base_url') or LOCAL_URL
-    self._version = kw['version'] = kw.get('version') or DEFAULT_VERSION
-    
     self._client = docker.Client(*args, **kw)
 
   def __repr__(self):
-    return '<Dock [%s] (%s)>' % (self._base_url, self._version)
+    return '<Dock [%s] (%s)>' % (self.base_url, self.version().get('Version'))
 
   def __getattribute__(self, x):
     client = super(Dock, self).__getattribute__('_client')
